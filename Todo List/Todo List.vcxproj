@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entry.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="RoboFunctions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Entry.h" />
+    <ClInclude Include="RoboFunctions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

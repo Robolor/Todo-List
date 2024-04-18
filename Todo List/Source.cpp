@@ -14,11 +14,13 @@
 #include <vector>
 #include <array>
 #include <cstdlib>
+#include "RoboFunctions.h"
+#include "Entry.h"
 
 
 using namespace std;
 
-class Entry {
+/*class Entry {
 private:
 	//tracks data for each entry, can add or subtract data from here to potentially add functionality later (will require new functions being created to parse new data being tracked)
 	string shortDescription = "";
@@ -90,7 +92,7 @@ public:
 
 
 
-};
+};*/
 
 
 
@@ -98,7 +100,6 @@ public:
 
 
 //global variable to hold the list of entries, need to look into a way to do this more securely, potentially pass the entire vector down the string of functions?
-vector <Entry> Entries;
 
 
 
@@ -106,12 +107,15 @@ vector <Entry> Entries;
 
 
 
+
+/*
 void DisplayTODOnoclear();
 void Mainmenu();
 void DisplayTODO();
 void AddEntries(int i);
 void WaitForUser();
 void ClearScreen();
+*/
 
 
 
@@ -120,9 +124,9 @@ void ClearScreen();
 
 
 int main() {
-	
+	vector <Entry> Entries;
 	//sends user to the main menu/loop for the program
-	Mainmenu();
+	Mainmenu(Entries);
 
 
 	//rudimentary way of implementing an exit check, potentially will only work once per runtime
@@ -134,7 +138,7 @@ int main() {
 	getline(cin, confirm);
 	
 	if (confirm[0] == 'n') {
-		Mainmenu();
+		Mainmenu(Entries);
 	}
 	
 	return 0;
@@ -146,7 +150,7 @@ int main() {
 
 
 
-void Mainmenu() {
+/*void Mainmenu() {
 	ClearScreen();
 	int selection = 0;
 	int option = 0;
@@ -232,7 +236,7 @@ void Mainmenu() {
 
 
 		Mainmenu();
-}
+}*/
 
 
 
@@ -240,14 +244,14 @@ void Mainmenu() {
 
 
 
-void ClearScreen() {
+/*void ClearScreen() {
 	system("CLS");
 }
 
 
 void WaitForUser() {
 	system("PAUSE");
-}
+}*/
 
 
 
@@ -255,7 +259,7 @@ void WaitForUser() {
 
 
 //does not clear the screen before diplaying the list, this should be used whenever the user wants to interact with the list rather than just read it
-void DisplayTODOnoclear() {
+/*void DisplayTODOnoclear() {
 	int numComplete = 0;
 	int totalListed = 0;
 	int vectorsize = Entries.size();
@@ -284,13 +288,13 @@ void DisplayTODOnoclear() {
 	cout << numComplete << " out of " << totalListed << " tasks are complete.";
 	cout << endl;
 	WaitForUser();
-}
+}*/
 
 
 
 
 //This parses through the entire list and displays the data for each entry
-void DisplayTODO() {
+/*void DisplayTODO() {
 	ClearScreen();
 	int numComplete = 0;
 	int totalListed = 0;
@@ -320,7 +324,7 @@ void DisplayTODO() {
 	cout << numComplete << " out of " << totalListed << " tasks are complete.";
 	cout << endl;
 	WaitForUser();
-}
+}*/
 
 
 
@@ -328,7 +332,7 @@ void DisplayTODO() {
 
 
 
-void AddEntries(int i) {
+/*void AddEntries(int i) {
 
 	ClearScreen();
 
@@ -338,7 +342,7 @@ void AddEntries(int i) {
 		Entries.push_back(newEntry);
 		newEntry.~Entry();
 	}
-}
+}*/
 
 
 
