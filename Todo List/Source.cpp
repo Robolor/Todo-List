@@ -134,7 +134,7 @@ int main() {
 	string confirm = "";
 	
 	cout << "are you sure you want to exit?: y/n";
-	
+	cin >> ws;
 	getline(cin, confirm);
 	
 	if (confirm[0] == 'n') {
