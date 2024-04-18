@@ -7,7 +7,7 @@
 
 /*CHECK NOTES AT BOTTOM OF PAGE*/
 
-//this is test
+
 
 #include <iostream>
 #include <string>
