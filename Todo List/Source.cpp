@@ -107,7 +107,6 @@ vector <Entry> Entries;
 
 
 void DisplayTODOnoclear();
-void CreateEntries();
 void Mainmenu();
 void DisplayTODO();
 void AddEntries(int i);
@@ -355,21 +354,21 @@ void AddEntries(int i) {
 ADD ALL FUTURE AND CURRENTLY WORKED ON FUNCTIONALITY TO THIS LIST
  
  
-TODO LIST
+TODO LIST (for the TODO list)
 
 
 
 
 in development:
 
-Create new entries									done
-Name entry upon creation							done
-Entries will have a title(name/short description) 	done
-full description									done	
+-Create new entries									done
+-Name entry upon creation							done
+-Entries will have a title(name/short description) 	done
+-full description									done	
 Date need to be completed by						in progress, initial implementation is not pretty and easily misused
-and a check for complete or not (bool)				done
+-check for complete or not (bool)					done
 List out entries									in progress, needs beutified for output
-
+dynamic number of entries							"done" (through vector, not finalized need to further test and look into ways to clean this up because global variables are not good practice)
 
 
 
@@ -383,8 +382,11 @@ future functionality:
 ability to add a description to an empty entry		incomplete
 ability to edit a description for an entry			incomplete (this may pair into the functionality listed above)
 priority sort										incomplete
-able to set a priority								incomplete
-perhaps using a number system 1 for top priority	incomplete
-dynamic number of entries							done (through vector, not completely tested, initial array implementation caused issues when trying to make it a global variable. need to further test and look into ways to clean this up because global variables are not good practice)
-make long description hidden until selected			incomplete
+{able to set a priority								incomplete
+perhaps using a number system 1 for top priority}	incomplete
+make long description hidden until selected			incomplete (might require a complete overhaul of the display list function, might also require creating a gui, otherwise will require clearing screen and reprinting)
+add a countdown until task is overdue				incomplete
+pull current time information from system			incomplete
+convert string form of date into int				incomplete
+add time of day that task needs completed by		incomplete
 */
