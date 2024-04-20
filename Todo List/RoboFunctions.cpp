@@ -21,13 +21,18 @@ void MenuText(int i) {
 
 	if (i == 0) {
 		cout << "1. No current items to be displayed. do not select option one" << endl;
+		cout << "2. Add to my TODO list" << endl;
+		cout << "3. I'm done for now" << endl;
 	}
-	else { cout << "1. Display my TODO list" << endl; }
+	else {
+		cout << "1. Display my TODO list" << endl;
+		cout << "2. Add to my TODO list" << endl;
+		cout << "3. I'd like to mark an entry as complete" << endl;
+		cout << "4. I'd like to mark an entry as incomplete" << endl;
+		cout << "5. I'm done for now" << endl;
+	}
 
-	cout << "2. Add to my TODO list" << endl;
-	cout << "3. I'd like to mark an entry as complete" << endl;
-	cout << "4. I'd like to mark an entry as incomplete" << endl;
-	cout << "5. I'm done for now" << endl;
+
 }
 
 
@@ -41,6 +46,11 @@ void Mainmenu(vector <Entry>& i) {
 	MenuText(vectorsize);
 
 	cin >> selection;
+
+	if (vectorsize == 0 && selection == 3) {
+		selection = 5;
+	}
+
 
 	ClearScreen();
 
@@ -108,11 +118,7 @@ void Mainmenu(vector <Entry>& i) {
 	Mainmenu(i);
 }
 
-
-
-
-
-
+//creates a temporary entry and then adds it to the back of the vector storing all entries
 void AddEntries(int i, vector <Entry> &j) {
 
 	ClearScreen();
