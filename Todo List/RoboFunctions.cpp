@@ -123,6 +123,7 @@ void AddEntries(int i, vector <Entry> &j) {
 	}
 }
 
+//This parses through the entire list and displays the data for each entry
 void DisplayTODO(vector <Entry> &j) {
 	ClearScreen();
 	int numComplete = 0;
@@ -155,6 +156,7 @@ void DisplayTODO(vector <Entry> &j) {
 	WaitForUser();
 }
 
+//does not clear the screen before diplaying the list, this should be used whenever the user wants to interact with the list rather than just read it
 void DisplayTODOnoclear(vector <Entry> &j) {
 	int numComplete = 0;
 	int totalListed = 0;
