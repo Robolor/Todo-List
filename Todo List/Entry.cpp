@@ -38,13 +38,14 @@ using namespace std;
 	void Entry::DisplayData() {
 		cout << shortDescription << endl;
 		cout << "this is due by: " << month << "/" << day << "/" << year << endl;
+		cout << longDescription;
+		cout << endl;
 		if (complete == true) {
 			cout << "This entry is completed" << endl;
 		}
 		else {
 			cout << "This entry is not complete yet" << endl;
 		};
-		cout << longDescription;
 		cout << endl;
 	}
 	//returns whether or not the entry is complete (usable for adding to the display menu as to whether or not the entry is completed later gui implementation could add a checkbox)

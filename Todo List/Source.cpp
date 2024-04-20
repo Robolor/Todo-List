@@ -99,13 +99,6 @@ public:
 
 
 
-//global variable to hold the list of entries, need to look into a way to do this more securely, potentially pass the entire vector down the string of functions?
-
-
-
-
-
-
 
 
 /*
@@ -134,9 +127,11 @@ int main() {
 	string confirm = "";
 	
 	cout << "are you sure you want to exit?: y/n";
-	
+	cin >> ws;
 	getline(cin, confirm);
 	
+	WaitForUser();
+
 	if (confirm[0] == 'n') {
 		Mainmenu(Entries);
 	}
