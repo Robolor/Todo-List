@@ -16,8 +16,10 @@ private:
 
 public:
 
+	//Contructor
 	Entry();
-	//destroys object
+
+	//destructor
 	~Entry();
 
 

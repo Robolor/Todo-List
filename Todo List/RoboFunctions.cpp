@@ -15,16 +15,11 @@ void WaitForUser() {
 	system("PAUSE");
 }
 
-
-//passes vector by reference and then passes down to each subsequent function rather than using a global vector
-void Mainmenu(vector <Entry>& i) {
-	ClearScreen();
-	int selection = 0;
-	int option = 0;
-	int vectorsize = i.size();
+//prints main menu, also checks to see if there are 0 entries and adjusts options accordingly
+void MenuText(int i) {
 	cout << "What would you like to do today?" << endl << endl;
 
-	if (vectorsize == 0) {
+	if (i == 0) {
 		cout << "1. No current items to be displayed. do not select option one" << endl;
 	}
 	else { cout << "1. Display my TODO list" << endl; }
@@ -33,6 +28,17 @@ void Mainmenu(vector <Entry>& i) {
 	cout << "3. I'd like to mark an entry as complete" << endl;
 	cout << "4. I'd like to mark an entry as incomplete" << endl;
 	cout << "5. I'm done for now" << endl;
+}
+
+
+//passes vector by reference and then passes down to each subsequent function rather than using a global vector
+void Mainmenu(vector <Entry>& i) {
+	ClearScreen();
+	int selection = 0;
+	int option = 0;
+	int vectorsize = i.size();
+	
+	MenuText(vectorsize);
 
 	cin >> selection;
 
@@ -84,7 +90,7 @@ void Mainmenu(vector <Entry>& i) {
 		break;
 
 
-		//exits
+		//exits main menu
 	case 5:
 		return;
 
@@ -97,12 +103,8 @@ void Mainmenu(vector <Entry>& i) {
 
 	}
 
-
-
-
-
-
-
+	
+	//recursive to keep the user in the menu
 	Mainmenu(i);
 }
 
