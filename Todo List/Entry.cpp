@@ -13,7 +13,7 @@ using namespace std;
 		cout << endl;
 
 		//asking the user if they would like to enter the long description now or later
-		cout << "Would you like to enter a description now? y/n" << flush;
+		cout << "Would you like to enter a description now? y/n  " << flush;
 		getline(cin, choice);
 		cout << endl;
 

@@ -12,12 +12,14 @@ private:
 	string month;
 	string day;
 	string year;
-	bool complete;
+	bool complete = false;
 
 public:
 
+	//Contructor
 	Entry();
-	//destroys object
+
+	//destructor
 	~Entry();
 
 
