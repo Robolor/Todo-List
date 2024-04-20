@@ -19,6 +19,7 @@ void WaitForUser() {
 void MenuText(int i) {
 	cout << "What would you like to do today?" << endl << endl;
 
+	//altered menu for when there are no entries
 	if (i == 0) {
 		cout << "1. No current items to be displayed. do not select option one" << endl;
 		cout << "2. Add to my TODO list" << endl;
@@ -47,10 +48,19 @@ void Mainmenu(vector <Entry>& i) {
 
 	cin >> selection;
 
+	//verifies that user has selected an option that is valid
+	while (vectorsize == 0 && (selection != 1 && selection != 2 && selection != 3)) {
+		ClearScreen();
+
+		cout << endl << "Please enter a valid option: " << endl;
+		MenuText(vectorsize);
+		cin >> selection;
+	}
+
+	//corrects input for current logic
 	if (vectorsize == 0 && selection == 3) {
 		selection = 5;
 	}
-
 
 	ClearScreen();
 
