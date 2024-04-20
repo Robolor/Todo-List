@@ -26,10 +26,24 @@ using namespace std;
 
 		//this may need redone, originally the thought was to use a string and then convert the entered data to individual integers for the month day and year
 		//current iteration is to just have them enter as numbers and separate their entries with a /
-		cout << "Enter the date this needs to be completed by in the form of MM/DD/YYYY: " << flush;
-		getline(cin, month); cout << "/"; getline(cin, day); cout << "/"; getline(cin, year); cout << endl;
+		cout << "Enter the date this needs to be completed by in the form of MM/DD/YYYY: " << endl;
 
+		//First attempt at verifying input for date as well as making date tracked as a set of ints
+		bool goodInput = false;
+		do {
+			cin >> month; cout << "/"; cin >> day; cout << "/"; cin >> year; cout << endl;
+			
+			if ((month < 1 || month > 12) || (day < 1 || day > 31) || (year < 0 || year > 9999)) {
+				cout << endl << "Please re-enter the date with appropriate values in the form of MM/DD/YYYY: " << endl;
+			}
+			else {
+				goodInput = true;
+				//fixing input stream for getline usage
+				cin >> ws;
+			}
+		} while (goodInput != true);
 	}
+
 	//destroys object
 	Entry::~Entry() {}
 

@@ -9,9 +9,9 @@ private:
 	//tracks data for each entry, can add or subtract data from here to potentially add functionality later (will require new functions being created to parse new data being tracked)
 	string shortDescription;
 	string longDescription;
-	string month;
-	string day;
-	string year;
+	int month;
+	int day;
+	int year;
 	bool complete = false;
 
 public:
