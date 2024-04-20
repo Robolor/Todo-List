@@ -78,7 +78,7 @@ void Mainmenu(vector <Entry>& i) {
 		break;
 
 
-		//adds an entry (need to test for functionality as i may need to look into how to create new objects without explicitly defining them
+		//adds selected number of entries to the list
 	case 2:
 		int numEntries;
 		ClearScreen();
@@ -88,7 +88,7 @@ void Mainmenu(vector <Entry>& i) {
 		break;
 
 
-		//marks a specific entry as completed and pulls the todo list without clearing the screen first
+		//marks a specified entry as completed and pulls the todo list without clearing the screen first
 	case 3:
 
 		cout << "Which entry would you like to mark completed?:" << endl;
@@ -99,7 +99,7 @@ void Mainmenu(vector <Entry>& i) {
 		break;
 
 
-		//marks a specific entry as incopmlete and pulls the todo list without clearing the screen first
+		//marks a specified entry as incopmlete and pulls the todo list without clearing the screen first
 	case 4:
 
 		cout << "Which entry would you like to mark completed?:" << endl;
