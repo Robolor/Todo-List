@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <vector>
 #include <iostream>
+#include <Windows.h>
+
 
 using namespace std;
 
@@ -19,6 +21,7 @@ void WaitForUser() {
 void MenuText(int i) {
 	cout << "What would you like to do today?" << endl << endl;
 
+	//altered menu for when there are no entries
 	if (i == 0) {
 		cout << "1. No current items to be displayed. do not select option one" << endl;
 		cout << "2. Add to my TODO list" << endl;
@@ -29,7 +32,8 @@ void MenuText(int i) {
 		cout << "2. Add to my TODO list" << endl;
 		cout << "3. I'd like to mark an entry as complete" << endl;
 		cout << "4. I'd like to mark an entry as incomplete" << endl;
-		cout << "5. I'm done for now" << endl;
+		cout << "5. I'd like to sort my entries by date" << endl;
+		cout << "6. I'm done for now" << endl;
 	}
 
 
@@ -47,10 +51,19 @@ void Mainmenu(vector <Entry>& i) {
 
 	cin >> selection;
 
-	if (vectorsize == 0 && selection == 3) {
-		selection = 5;
+	//verifies that user has selected an option that is valid
+	while (vectorsize == 0 && (selection != 1 && selection != 2 && selection != 3)) {
+		ClearScreen();
+
+		cout << endl << "Please enter a valid option: " << endl;
+		MenuText(vectorsize);
+		cin >> selection;
 	}
 
+	//corrects input for current logic
+	if (vectorsize == 0 && selection == 3) {
+		selection = 6;
+	}
 
 	ClearScreen();
 
@@ -68,7 +81,7 @@ void Mainmenu(vector <Entry>& i) {
 		break;
 
 
-		//adds an entry (need to test for functionality as i may need to look into how to create new objects without explicitly defining them
+		//adds selected number of entries to the list
 	case 2:
 		int numEntries;
 		ClearScreen();
@@ -78,7 +91,7 @@ void Mainmenu(vector <Entry>& i) {
 		break;
 
 
-		//marks a specific entry as completed and pulls the todo list without clearing the screen first
+		//marks a specified entry as completed and pulls the todo list without clearing the screen first
 	case 3:
 
 		cout << "Which entry would you like to mark completed?:" << endl;
@@ -89,7 +102,7 @@ void Mainmenu(vector <Entry>& i) {
 		break;
 
 
-		//marks a specific entry as incopmlete and pulls the todo list without clearing the screen first
+		//marks a specified entry as incopmlete and pulls the todo list without clearing the screen first
 	case 4:
 
 		cout << "Which entry would you like to mark completed?:" << endl;
@@ -99,9 +112,16 @@ void Mainmenu(vector <Entry>& i) {
 		i[option - 1].NotComplete();
 		break;
 
+	case 5:
+
+		ClearScreen();
+		SortByDate(i);
+		cout << "Entries sorted. " << endl;
+		Sleep(1500);
+		break;
 
 		//exits main menu
-	case 5:
+	case 6:
 		return;
 
 
@@ -195,3 +215,177 @@ void DisplayTODOnoclear(vector <Entry> &j) {
 	cout << endl;
 	WaitForUser();
 }
+
+//not tested yet, but this should sort the entire list of entries by due date
+void SortByDate(vector <Entry>& i) {
+	int numEntries = i.size();
+	int counter = 0;
+	bool sorted = false;
+
+	while (sorted == false) {
+		counter = 0;
+
+		//iterates through the whole list and compares each entry to the next one
+		for (int j = 1; j < numEntries; j++) {
+			//checks to make sure that we aren't comparing to an erroneous entry
+			if (counter < numEntries) {
+				//creates a temp entry to use to compare against the next entry
+				Entry temp = i[counter];
+				//creates a temp entry at the next location to compare against the temp
+				Entry replace = i[j];
+
+				//compares the years, if the "first" entry has a later year than the "next" entry then we need to swap the two and we can't confirm that list is sorted
+				if (temp.ReturnYear() > replace.ReturnYear()) {
+
+					sorted = false;
+				
+					i[counter] = replace;
+					i[j] = temp;
+					
+					counter++;
+					continue;
+				}
+
+				//if the year of the "first" entry is earlier than the "next" entry then we can move to the next iteration
+				if (temp.ReturnYear() < replace.ReturnYear()) {
+					sorted = true;
+					counter++;
+					continue;
+				}
+
+				//if the years are the same then we have to check months
+				if (temp.ReturnYear() == replace.ReturnYear()) {
+
+					//compares the months, if the "first" entry has a later month than the "next" entry then we need to swap the two and we can't confirm that the list is sorted
+					if (temp.ReturnMonth() > replace.ReturnMonth()) {
+
+						sorted = false;
+
+						i[counter] = replace;
+						i[j] = temp;
+						counter++;
+						continue;
+					}
+
+					//if the months are the same then we have to check days
+					if (temp.ReturnMonth() == replace.ReturnMonth()) {
+
+						//compares the days, if the "first" entry has a later day than the "next" entry then we need to swap the two and we can't confirm that the list is sorted
+						if (temp.ReturnDay() > replace.ReturnDay()) {
+							sorted = false;
+
+
+
+							i[counter] = replace;
+							i[j] = temp;
+							counter++;
+							continue;
+						}
+
+						//if the days are the same OR if the "first" entry has a earlier day than the "next" entry then we can keep them in the same spot and move to the next iteration
+						if ((temp.ReturnDay() == replace.ReturnDay()) || (temp.ReturnDay() < replace.ReturnDay())) {
+							sorted = true;
+							counter++;
+							continue;
+						}
+
+					}
+
+					//if the years are the same and the month is earlier than the "next" entry then we dont need to swap and can move to the next iteration
+					if (temp.ReturnMonth() < replace.ReturnMonth()) {
+						sorted = true;
+						counter++;
+						continue;
+					}
+				}
+			}
+				
+			
+		}
+
+
+
+		//if the first pass succeeds then this pass confirms that list is sorted by rechecking each value
+		if (sorted == true) {
+
+			//resets counter for the confirmation pass
+			counter = 0;
+
+			//iterates through the whole list and compares each entry to the next one
+			for (int j = 1; j < numEntries; j++) {
+
+				//checks to make sure that we aren't comparing to an erroneous entry
+				if (counter < numEntries) {
+
+					//creates a temp entry to use to compare against the next entry
+					Entry temp = i[counter];
+
+					//creates a temp entry at the next location to compare against the temp
+					Entry replace = i[j];
+
+					//compares the years, if the list is found to be not sorted then we break from the confirmation loop and set sorted to false. this also will swap the two entries found to be out of order
+					if (temp.ReturnYear() > replace.ReturnYear()) {
+
+						sorted = false;
+
+						i[counter] = replace;
+						i[j] = temp;
+
+						break;
+					}
+
+					//if the year of the "first" entry is earlier than the "next" entry then we can move to the next iteration
+					if (temp.ReturnYear() < replace.ReturnYear()) {
+						sorted = true;
+						counter++;
+						continue;
+					}
+
+					//if the years are the same then we have to check months
+					if (temp.ReturnYear() == replace.ReturnYear()) {
+
+						//compares the months, if the list is found to be not sorted then we break from the confirmation loop and set sorted to false. this also will swap the two entries found to be out of order
+						if (temp.ReturnMonth() > replace.ReturnMonth()) {
+
+							sorted = false;
+
+							i[counter] = replace;
+							i[j] = temp;
+
+							break;
+						}
+
+						//if the months are the same then we have to check days
+						if (temp.ReturnMonth() == replace.ReturnMonth()) {
+
+							//compares the days, if the list is found to be not sorted then we break from the confirmation loop and set sorted to false. this also will swap the two entries found to be out of order
+							if (temp.ReturnDay() > replace.ReturnDay()) {
+								sorted = false;
+
+								i[counter] = replace;
+								i[j] = temp;
+
+								break;
+							}
+
+							//if the days are the same OR if the "first" entry has a earlier day than the "next" entry then we can keep them in the same spot and move to the next iteration
+							if ((temp.ReturnDay() == replace.ReturnDay()) || (temp.ReturnDay() < replace.ReturnDay())) {
+								sorted = true;
+								counter++;
+								continue;
+							}
+						}
+
+						//if the years are the same and the month is earlier than the "next" entry then we dont need to swap and can move to the next iteration
+						if (temp.ReturnMonth() < replace.ReturnMonth()) {
+							sorted = true;
+							counter++;
+							continue;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
