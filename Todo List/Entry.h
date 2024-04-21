@@ -22,7 +22,9 @@ public:
 	//destructor
 	~Entry();
 
-
+	int ReturnYear() const;
+	int ReturnMonth() const;
+	int ReturnDay() const;
 	//prints out the data held in each entry since the values are private
 	void DisplayData();
 	//returns whether or not the entry is complete (usable for adding to the display menu as to whether or not the entry is completed later gui implementation could add a checkbox)

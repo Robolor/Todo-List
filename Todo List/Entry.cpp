@@ -6,14 +6,14 @@ using namespace std;
 
 		//Creating a title/shortdescription
 		string choice;
-		cout << "Enter the Title for the entry: " << flush;
+		cout << "Enter the Title for the entry: " << endl;
 		//used to clear input buffer as cin was used previously and does not play well with getline
 		cin >> ws;
 		getline(cin, shortDescription);
 		cout << endl;
 
 		//asking the user if they would like to enter the long description now or later
-		cout << "Would you like to enter a description now? y/n  " << flush;
+		cout << "Would you like to enter a description now? y/n  " << endl;
 		getline(cin, choice);
 		cout << endl;
 
@@ -38,10 +38,9 @@ using namespace std;
 			}
 			else {
 				goodInput = true;
-				//fixing input stream for getline usage
-				cin >> ws;
+				
 			}
-		} while (goodInput != true);
+		} while (goodInput == false);
 	}
 
 	//destroys object
@@ -73,4 +72,17 @@ using namespace std;
 	//marks the entry as incomplete
 	void Entry::NotComplete() {
 		complete = false;
+	}
+
+
+	int Entry::ReturnDay() const {
+		return day;
+	}
+
+	int Entry::ReturnMonth() const {
+		return month;
+	}
+
+	int Entry::ReturnYear() const {
+		return year;
 	}

@@ -11,4 +11,4 @@ void AddEntries(int i, vector <Entry>& j);
 void MenuText(int i);
 void WaitForUser();
 void ClearScreen();
-
+void SortByDate(vector<Entry>& i);
