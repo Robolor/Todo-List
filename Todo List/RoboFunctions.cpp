@@ -22,17 +22,17 @@ void MenuText(int i) {
 	cout << "What would you like to do today?" << endl << endl;
 
 	//altered menu for when there are no entries
-	if (i == 0) {
+	if (i < 1) {
 		cout << "1. No current items to be displayed. do not select option one" << endl;
 		cout << "2. Add to my TODO list" << endl;
 		cout << "3. I'm done for now" << endl;
 	}
-	else {
+	else if (i >= 1) {
 		cout << "1. Display my TODO list" << endl;
 		cout << "2. Add to my TODO list" << endl;
 		cout << "3. I'd like to mark an entry as complete" << endl;
 		cout << "4. I'd like to mark an entry as incomplete" << endl;
-		cout << "5. I'd like to sort my entries by date" << endl;
+		cout << "5. I'd like to sort my entries by due date" << endl;
 		cout << "6. I'm done for now" << endl;
 	}
 
